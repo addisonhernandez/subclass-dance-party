@@ -2,8 +2,6 @@ var BlinkyDancer = function(top, left, timeBetweenSteps) {
   // var blinkyDancer = makeDancer(top, left, timeBetweenSteps);
   Dancer.call(this, top, left, timeBetweenSteps);
 
-
-  // return blinkyDancer;
 };
 
 // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
