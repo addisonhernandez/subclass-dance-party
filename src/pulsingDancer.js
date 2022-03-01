@@ -6,7 +6,7 @@ var PulsingDancer = function(top, left, timeBetweenSteps) {
 PulsingDancer.prototype = Object.create(Dancer.prototype);
 PulsingDancer.prototype.constructor = PulsingDancer;
 
-PulsingDancer.prototype.step = function() {
+PulsingDancer.prototype.step = (function() {
   // closure-scoped boolean flag:
   // true -> grow on the next step
   // false -> shrink on the next step
@@ -16,10 +16,10 @@ PulsingDancer.prototype.step = function() {
   return function () {
     // call the old version of step at the beginning of any call to this new version of step
     Dancer.prototype.step.call(this);
-
+    // debugger;
     // find a jQuery method that lets me grow/shrink the dancer
     if (growOnNextStep) {
-      this.$node.animate({ scale: 1.5 });
+      this.$node.animate({ transform: 'scale(150%)' });
     } else {
       this.$node.animate({ scale: 1.0 });
     }
@@ -28,4 +28,4 @@ PulsingDancer.prototype.step = function() {
     growOnNextStep = !growOnNextStep;
   };
 
-};
+})();
