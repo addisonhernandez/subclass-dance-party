@@ -1,6 +1,11 @@
 var PulsingDancer = function(top, left, timeBetweenSteps) {
   // var blinkyDancer = makeDancer(top, left, timeBetweenSteps);
   Dancer.call(this, top, left, timeBetweenSteps);
+
+  this.$node.css({
+    'transition-duration': (timeBetweenSteps >> 1) + 'ms',
+    'transition-timing-function': 'ease-in-out',
+  });
 };
 
 PulsingDancer.prototype = Object.create(Dancer.prototype);
@@ -19,9 +24,13 @@ PulsingDancer.prototype.step = (function() {
     // debugger;
     // find a jQuery method that lets me grow/shrink the dancer
     if (growOnNextStep) {
-      this.$node.animate({ transform: 'scale(150%)' });
+      this.$node.css({
+        'transform': 'scale(2)',
+      });
     } else {
-      this.$node.animate({ scale: 1.0 });
+      this.$node.css({
+        'transform': 'scale(1)',
+      });
     }
 
     // toggle the grow/shrink flag
